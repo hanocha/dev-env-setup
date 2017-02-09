@@ -4,3 +4,5 @@ Specinfra::Command::Linuxmint::Base::Ppa = Class.new(Specinfra::Command::Debian:
 Specinfra::Command::Linuxmint::Base::Service = Class.new(Specinfra::Command::Debian::Base::Service)
 
 include_recipe "./cookbooks/vim/default.rb"
+include_recipe "./cookbooks/zsh/default.rb"
+include_recipe "./cookbooks/oh-my-zsh/default.rb"
