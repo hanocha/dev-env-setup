@@ -6,3 +6,4 @@ Specinfra::Command::Linuxmint::Base::Service = Class.new(Specinfra::Command::Deb
 include_recipe "./cookbooks/vim/default.rb"
 include_recipe "./cookbooks/zsh/default.rb"
 include_recipe "./cookbooks/oh-my-zsh/default.rb"
+include_recipe "./cookbooks/tmux/default.rb"
