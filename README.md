@@ -18,3 +18,13 @@ $ chmod +x mitamae-x86_64-linux
 ```
 # mitamae-x86_64-linux local main.rb
 ```
+
+
+## Packages to be installed
+
+see `main.rb`
+
+- vim(huge ver)
+- zsh, oh-my-zsh
+- tmux
+- ruby(2.4.0)
