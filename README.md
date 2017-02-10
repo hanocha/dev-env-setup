@@ -16,7 +16,7 @@ $ chmod +x mitamae-x86_64-linux
 ### 2. run MItamae
 
 ```
-# mitamae-x86_64-linux local main.rb
+# mitamae-x86_64-linux local -j node.json main.rb
 ```
 
 
