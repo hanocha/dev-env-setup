@@ -27,4 +27,4 @@ see `main.rb`
 - vim(huge ver)
 - zsh, oh-my-zsh
 - tmux
-- ruby(2.4.0)
+- ruby(2.4.0) with rbenv
