@@ -8,3 +8,4 @@ include_recipe "./cookbooks/zsh/default.rb"
 include_recipe "./cookbooks/oh-my-zsh/default.rb"
 include_recipe "./cookbooks/tmux/default.rb"
 include_recipe "./cookbooks/ruby/default.rb"
+include_recipe './cookbooks/go/default.rb'
