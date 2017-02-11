@@ -35,6 +35,7 @@ execute 'add rbenv settings into /home/hanocha/.zshrc' do
 echo 'export PATH="$RBENV_ROOT/bin:$PATH"' >> /home/hanocha/.zshrc
 echo 'eval "$(rbenv init -)"' >> /home/hanocha/.zshrc
 |
+  not_if 'grep "RBENV_ROOT" /home/hanocha/.zshrc'
 end
 
 execute "install ruby 2.4.0" do
