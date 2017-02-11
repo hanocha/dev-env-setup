@@ -9,3 +9,5 @@ include_recipe "./cookbooks/oh-my-zsh/default.rb"
 include_recipe "./cookbooks/tmux/default.rb"
 include_recipe "./cookbooks/ruby/default.rb"
 include_recipe './cookbooks/go/default.rb'
+include_recipe './cookbooks/ghq/default.rb'
+include_recipe './cookbooks/peco/default.rb'
