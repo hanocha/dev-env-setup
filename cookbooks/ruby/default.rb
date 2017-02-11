@@ -19,7 +19,7 @@ end
 execute 'init rbenv' do
   user node.user.name
   command '/home/hanocha/.rbenv/bin/rbenv init -'
-  not_if 'rbenv -v'
+  not_if '/home/hanocha/.rbenv/bin/rbenv -v'
 end
 
 directory '/home/hanocha/.rbenv/shims' do
@@ -42,10 +42,4 @@ execute "install ruby 2.4.0" do
   user node.user.name
   command "/home/hanocha/.rbenv/bin/rbenv install 2.4.0"
   not_if '/home/hanocha/.rbenv/bin/rbenv versions | grep 2.4.0'
-end
-
-execute 'set global ruby version to 2.4.0' do
-  user node.user.name
-  command '/home/hanocha/.rbenv/bin/rbenv global 2.4.0'
-  only_if '/home/hanocha/.rbenv/bin/rbenv versions | grep 2.4.0'
 end
