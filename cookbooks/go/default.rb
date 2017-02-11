@@ -12,8 +12,9 @@ end
 
 execute 'add go pathes into .zshrc' do
   user node.user.name
-  command %|echo "export PATH=$PATH:/usr/local/go/bin" >> /home/hanocha/.zshrc
-echo "export GOPATH=/home/hanocha/go" >> /home/hanocha/.zshrc
+  command %|echo 'export GOROOT="/usr/local/go"' >> /home/hanocha/.zshrc
+echo 'export GOPATH="/home/hanocha/go"' >> /home/hanocha/.zshrc
+echo 'export PATH=$PATH:$GOROOT/bin:$GOPATH/bin' >> /home/hanocha/.zshrc
 |
   not_if 'grep "go/bin" /home/hanocha/.zshrc'
 end
