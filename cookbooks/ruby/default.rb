@@ -23,10 +23,14 @@ execute 'init rbenv' do
 end
 
 directory '/home/hanocha/.rbenv/shims' do
+  owner node.user.name
+  group node.user.name
   action :create
 end
 
 directory '/home/hanocha/.rbenv/versions' do
+  owner node.user.name
+  group node.user.name
   action :create
 end
 
