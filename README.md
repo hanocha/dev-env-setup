@@ -8,15 +8,15 @@ setting up development environment on Linux mint using MItamae.
 ### 1. download MItamae binaly
 
 ```
-$ wget https://github.com/k0kubun/mitamae/releases/download/v1.3.4/mitamae-x86_64-linux
-$ chmod +x mitamae-x86_64-linux
+$ wget -o mitamae https://github.com/k0kubun/mitamae/releases/download/v1.5.2/mitamae-x86_64-linux
+$ chmod 700 mitamae
 ```
 
 
 ### 2. run MItamae
 
 ```
-# mitamae-x86_64-linux local -j node.json main.rb
+# ./mitamae local -j node.json main.rb
 ```
 
 
@@ -25,6 +25,5 @@ $ chmod +x mitamae-x86_64-linux
 see `main.rb`
 
 - vim(huge ver)
-- zsh, oh-my-zsh
-- tmux
-- ruby(2.4.0) with rbenv
+- fish
+- anyenv
