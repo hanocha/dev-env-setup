@@ -1,7 +1,11 @@
 # dev-env-setup
 
-setting up development environment on Linux mint using MItamae.
+setting up development environment on Ubuntu using MItamae.
 
+
+## requirements
+
+- Ubuntu 17.10 "Artful"
 
 ## usage
 
@@ -24,6 +28,7 @@ $ chmod 700 mitamae
 
 see `main.rb`
 
-- vim(huge ver)
-- fish
-- anyenv
+- curl
+- Powerline fonts
+- fish, fisherman, bobthefish theme
+- go
