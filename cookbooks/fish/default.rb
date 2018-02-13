@@ -5,6 +5,12 @@ end
 
 package "fish"
 
+file "Create fish config file" do
+  path "/home/#{node.user.name}/.config/fish/config.fish"
+  owner node.user.name
+  group node.user.name
+end
+
 execute "set default shell to fish" do
   command "chsh -s /usr/bin/fish #{node.user.name}"
   not_if "cat /etc/passwd | grep '/home/#{node.user.name}:/usr/bin/fish'"
