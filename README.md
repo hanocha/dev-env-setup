@@ -31,4 +31,7 @@ see `main.rb`
 - curl
 - Powerline fonts
 - fish, fisherman, bobthefish theme
-- go
+- go, ghq, peco
+- neovim
+- ~~anyenv~~
+- ruby with rbenv
