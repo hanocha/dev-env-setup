@@ -15,8 +15,8 @@ end
 execute 'add go pathes into .zshrc' do
   user node.user.name
   command %|
-  echo 'set -x GOROOT "/usr/local/go"' >> /home/#{node.user.name}/.config/fish/config.fish
-  echo 'set -x GOPATH "/home/hanocha/go"' >> /home/#{node.user.name}/.config/fish/config.fish
+  echo 'set -x GOROOT /usr/local/go' >> /home/#{node.user.name}/.config/fish/config.fish
+  echo 'set -x GOPATH $HOME/go' >> /home/#{node.user.name}/.config/fish/config.fish
   echo 'set -x PATH $GOROOT/bin $GOPATH/bin $PATH' >> /home/#{node.user.name}/.config/fish/config.fish
 |
   not_if "cat #{home_dir}/.config/fish/config.fish | grep 'set -x PATH $GOROOT/bin $GOPATH/bin $PATH'"
