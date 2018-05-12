@@ -1,5 +1,6 @@
 package "make"
 package "gcc"
+package "g++"
 package "openssl"
 package "libssl-dev"
 package "zlib1g-dev"
