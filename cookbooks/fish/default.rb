@@ -5,8 +5,10 @@ end
 
 package "fish"
 
+config_file_path = "/home/#{node.user.name}/.config/fish/config.fish"
+
 file "Create fish config file" do
-  path "/home/#{node.user.name}/.config/fish/config.fish"
+  path config_file_path
   owner node.user.name
   group node.user.name
 end
@@ -27,4 +29,14 @@ execute "Install bobthefish" do
   cwd "/home/#{node.user.name}"
   command "fish -c 'fisher oh-my-fish/theme-bobthefish'"
   not_if "ls /home/hanocha/.config/fisherman/bobthefish/"
+end
+
+execute "Add aliases into config.fish" do
+  user node.user.name
+  cwd "/home/#{node.user.name}"
+  command <<-EOC
+echo "alias gco='git checkout'" >> #{config_file_path}
+echo "alias be='bundle exec'" >> #{config_file_path}
+  EOC
+  not_if "cat #{config_file_path} | grep 'alias gco'"
 end
