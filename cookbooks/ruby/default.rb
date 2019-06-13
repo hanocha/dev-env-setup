@@ -46,8 +46,8 @@ execute "add rbenv settings" do
   not_if "grep 'eval (rbenv init -)' /home/#{node.user.name}/.config/fish/config.fish"
 end
 
-execute "install ruby 2.5.0" do
+execute "install ruby 2.6.3" do
   user node.user.name
-  command "/home/#{node.user.name}/.rbenv/bin/rbenv install 2.5.0"
-  not_if "/home/#{node.user.name}/.rbenv/bin/rbenv versions | grep 2.5.0"
+  command "/home/#{node.user.name}/.rbenv/bin/rbenv install 2.6.3"
+  not_if "/home/#{node.user.name}/.rbenv/bin/rbenv versions | grep 2.6.3"
 end
