@@ -27,7 +27,7 @@ end
 execute "Install bobthefish" do
   user node.user.name
   cwd "/home/#{node.user.name}"
-  command "fish -c 'fisher oh-my-fish/theme-bobthefish'"
+  command "fish -c 'fisher add oh-my-fish/theme-bobthefish'"
   not_if "ls /home/hanocha/.config/fisherman/bobthefish/"
 end
 
