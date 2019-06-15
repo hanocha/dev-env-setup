@@ -1,11 +1,16 @@
 execute "Add fish shell repository" do
-  command "apt-add-repository ppa:fish-shell/release-2"
-  not_if "ls /etc/apt/sources.list.d/ | grep 'fish-shell-ubuntu-release-2'"
+  command "apt-add-repository ppa:fish-shell/release-3"
+  not_if "ls /etc/apt/sources.list.d/ | grep 'fish-shell-ubuntu-release-3'"
 end
 
 package "fish"
 
 config_file_path = "/home/#{node.user.name}/.config/fish/config.fish"
+
+directory "/home/#{node.user.name}/.config/fish" do
+  owner node.user.name
+  group node.user.name
+end
 
 file "Create fish config file" do
   path config_file_path
@@ -40,3 +45,4 @@ echo "alias be='bundle exec'" >> #{config_file_path}
   EOC
   not_if "cat #{config_file_path} | grep 'alias gco'"
 end
+
