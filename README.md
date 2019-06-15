@@ -12,7 +12,7 @@ setting up development environment on Ubuntu using MItamae.
 ### 1. Download MItamae binaly
 
 ```
-$ wget -o mitamae https://github.com/k0kubun/mitamae/releases/download/v1.5.6/mitamae-x86_64-linux
+$ wget https://github.com/k0kubun/mitamae/releases/download/v1.7.5/mitamae-x86_64-linux
 $ chmod 700 mitamae
 ```
 
