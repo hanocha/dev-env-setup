@@ -12,22 +12,10 @@ setting up development environment on Ubuntu using MItamae.
 ### 1. Download MItamae binaly
 
 ```
-$ wget https://github.com/k0kubun/mitamae/releases/download/v1.7.5/mitamae-x86_64-linux
-$ chmod 700 mitamae
+$ wget https://github.com/k0kubun/mitamae/releases/download/v1.7.5/mitamae-x86_64-linux; mv mitamae-x86_64-linux mitamae; chmod 700 mitamae;
 ```
 
-### 2. Create node.json
-
-```node.json
-{
-  "user": {
-    "name": "hanocha"
-  }
-}
-```
-
-
-### 3. Run MItamae
+### 2. Run mitamae
 
 ```
 # ./mitamae local -j node.json main.rb
