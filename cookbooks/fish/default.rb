@@ -7,6 +7,11 @@ package "fish"
 
 config_file_path = "/home/#{node.user.name}/.config/fish/config.fish"
 
+directory "/home/#{node.user.name}/.config" do
+  owner node.user.name
+  group node.user.name
+end
+
 directory "/home/#{node.user.name}/.config/fish" do
   owner node.user.name
   group node.user.name
