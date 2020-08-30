@@ -38,7 +38,7 @@ execute "Install bobthefish" do
   user node.user.name
   cwd "/home/#{node.user.name}"
   command "fish -c 'fisher add oh-my-fish/theme-bobthefish'"
-  not_if "ls /home/hanocha/.config/fisherman/bobthefish/"
+  not_if "find /home/#{node.user.name}/.config/fish/functions/ -name \*bobthefish\*"
 end
 
 execute "Add aliases into config.fish" do
@@ -50,4 +50,3 @@ echo "alias be='bundle exec'" >> #{config_file_path}
   EOC
   not_if "cat #{config_file_path} | grep 'alias gco'"
 end
-
