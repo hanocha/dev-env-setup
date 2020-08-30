@@ -6,13 +6,14 @@ setting up development environment on Ubuntu using MItamae.
 ## requirements
 
 - Ubuntu 18.04 "Bionic"
+- Ubuntu 20.04 "Focal"
 
 ## usage
 
 ### 1. Download MItamae binaly
 
 ```
-$ wget https://github.com/k0kubun/mitamae/releases/download/v1.7.5/mitamae-x86_64-linux; mv mitamae-x86_64-linux mitamae; chmod 700 mitamae;
+$ wget https://github.com/k0kubun/mitamae/releases/download/v1.11.7/mitamae-x86_64-linux; mv mitamae-x86_64-linux mitamae; chmod 700 mitamae;
 ```
 
 ### 2. Run mitamae
