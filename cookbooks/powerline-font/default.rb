@@ -1,3 +1,5 @@
+package 'fontconfig'
+
 git "clone powerline/fonts repo" do
   user node.user.name
   repository "git@github.com:powerline/fonts.git"
