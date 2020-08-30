@@ -12,6 +12,7 @@ execute "add nodebrew settings" do
 end
 
 execute 'install nodejs(latest, stable)' do
-  command "/home/#{node.user.name}/.nodebrew/current/bin/nodebrew install stable"
+  command "/home/#{node.user.name}/.nodebrew/current/bin/nodebrew install stable; /home/hanocha/.nodebrew/current/bin/nodebrew use latest"
   not_if "/home/#{node.user.name}/.nodebrew/current/bin/node -v"
+  user "#{node.user.name}"
 end
