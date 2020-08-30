@@ -1,2 +1,2 @@
-package 'postgresql-10'
+package 'postgresql'
 package 'libpq-dev'
