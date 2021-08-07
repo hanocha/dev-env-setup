@@ -1,14 +1,14 @@
 home_dir = "/home/#{node.user.name}"
 
-execute 'download go 1.15 binary' do
+execute 'download go 1.16 binary' do
   user node.user.name
   cwd home_dir
-  command 'wget https://golang.org/dl/go1.15.linux-amd64.tar.gz'
-  not_if "ls #{home_dir}/go1.15.linux-amd64.tar.gz"
+  command 'wget https://golang.org/dl/go1.16.linux-amd64.tar.gz'
+  not_if "ls #{home_dir}/go1.16.linux-amd64.tar.gz"
 end
 
 execute 'decompless go binary tarball' do
-  command "tar -C /usr/local -xzf #{home_dir}/go1.15.linux-amd64.tar.gz"
+  command "tar -C /usr/local -xzf #{home_dir}/go1.16.linux-amd64.tar.gz"
   not_if 'ls /usr/local/go'
 end
 
