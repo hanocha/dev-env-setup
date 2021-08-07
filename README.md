@@ -1,6 +1,6 @@
 # dev-env-setup
 
-setting up development environment on Ubuntu using MItamae.
+Setting up development environment for Ubuntu, running on WSL2.
 
 
 ## requirements
@@ -33,4 +33,3 @@ See also: `main.rb`
 - neovim
 - ruby with rbenv
 - python
-- docker
