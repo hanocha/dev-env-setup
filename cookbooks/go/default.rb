@@ -11,10 +11,16 @@ execute 'decompless go binary tarball' do
   command "rm -rf /usr/local/go && tar -C /usr/local -xzf #{home_dir}/go.tar.gz"
 end
 
-execute 'add go pathes into fish config' do
+execute 'add /usr/local/go/bin into PATH' do
   user node.user.name
-  command "echo 'set -x PATH /usr/local/go/bin $PATH' >> /home/#{node.user.name}/.config/fish/config.fish"
+  command "echo 'set -x PATH /usr/local/go/bin $PATH' >> #{home_dir}}/.config/fish/config.fish"
   not_if "cat #{home_dir}/.config/fish/config.fish | grep 'set -x PATH /usr/local/go/bin $PATH'"
+end
+
+execute 'add ~/go/bin into PATH' do
+  user node.user.name
+  command "echo 'set -x PATH #{home_dir}/go/bin $PATH' >> #{home_dir}/.config/fish/config.fish"
+  not_if "cat #{home_dir}/.config/fish/config.fish | grep 'set -x PATH #{home_dir}/go/bin $PATH'"
 end
 
 file "#{home_dir}/go.tar.gz" do
