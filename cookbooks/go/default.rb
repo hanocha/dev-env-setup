@@ -13,7 +13,7 @@ end
 
 execute 'add /usr/local/go/bin into PATH' do
   user node.user.name
-  command "echo 'set -x PATH /usr/local/go/bin $PATH' >> #{home_dir}}/.config/fish/config.fish"
+  command "echo 'set -x PATH /usr/local/go/bin $PATH' >> #{home_dir}/.config/fish/config.fish"
   not_if "cat #{home_dir}/.config/fish/config.fish | grep 'set -x PATH /usr/local/go/bin $PATH'"
 end
 
