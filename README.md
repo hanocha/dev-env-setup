@@ -9,18 +9,11 @@ Setting up development environment for Ubuntu, running on WSL2.
 
 ## usage
 
-### 1. Download MItamae binary
+You should only run a command below!
 
 ```
-$ wget https://github.com/k0kubun/mitamae/releases/latest/download/mitamae-x86_64-linux; mv mitamae-x86_64-linux mitamae; chmod 700 mitamae;
+$ sudo ./bin/setup
 ```
-
-### 2. Run mitamae
-
-```
-# ./mitamae local -j node.json main.rb
-```
-
 
 ## Packages to be installed
 
