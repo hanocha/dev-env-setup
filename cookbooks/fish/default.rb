@@ -38,7 +38,7 @@ execute "Install bobthefish" do
   user node.user.name
   cwd "/home/#{node.user.name}"
   command "fish -c 'fisher install oh-my-fish/theme-bobthefish'"
-  not_if "find /home/#{node.user.name}/.config/fish/functions/ -name \*bobthefish\*"
+  not_if "test -e /home/#{node.user.name}/.config/fish/functions/bobthefish_display_colors.fish"
 end
 
 execute "Add aliases into config.fish" do
