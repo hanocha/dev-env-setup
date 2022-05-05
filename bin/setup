@@ -1,4 +1,7 @@
 #!/bin/sh
 
-wget https://github.com/k0kubun/mitamae/releases/latest/download/mitamae-x86_64-linux; mv mitamae-x86_64-linux mitamae; chmod 700 mitamae
+if [ ! -x ./mitamae ]; then
+  wget https://github.com/k0kubun/mitamae/releases/latest/download/mitamae-x86_64-linux; mv mitamae-x86_64-linux mitamae; chmod 700 mitamae
+fi
+
 sudo ./mitamae local -j node.json main.rb
