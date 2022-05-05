@@ -13,9 +13,3 @@ execute 'add pyenv settings into config.fish' do
 COMMAND
   not_if "grep 'pyenv init' /home/#{node.user.name}/.config/fish/config.fish"
 end
-
-execute 'install python 3.6.5' do
-  user node.user.name
-  command "/home/#{node.user.name}/.pyenv/bin/pyenv install 3.6.5"
-  not_if "/home/hanocha/.pyenv/bin/pyenv versions | grep 3.6.5"
-end

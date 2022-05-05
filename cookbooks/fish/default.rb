@@ -44,9 +44,9 @@ end
 execute "Add aliases into config.fish" do
   user node.user.name
   cwd "/home/#{node.user.name}"
-  command <<-EOC
-echo "alias gco='git checkout'" >> #{config_file_path}
-echo "alias be='bundle exec'" >> #{config_file_path}
+  command <<~EOC
+    echo "alias gco='git checkout'" >> #{config_file_path}
+    echo "alias be='bundle exec'" >> #{config_file_path}
   EOC
   not_if "cat #{config_file_path} | grep 'alias gco'"
 end
