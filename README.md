@@ -3,9 +3,10 @@
 Setting up development environment for Ubuntu, running on WSL2.
 
 
-## requirements
+## targets
 
-- Ubuntu 20.04 "Focal"
+- Ubuntu 22.04
+- ~~macOS~~
 
 ## usage
 
@@ -19,10 +20,8 @@ $ sudo ./bin/setup
 
 See also: `main.rb`
 
-- curl
 - Powerline fonts
 - fish, fisherman, bobthefish theme
 - go, ghq, peco
-- neovim
-- ruby with rbenv
-- python
+- rbenv
+- volta (nodejs version manager)
