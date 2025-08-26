@@ -5,6 +5,5 @@
   "git": {
     "name": "hanocha",
     "email": "hoge@example.com"
-  },
-  "goVersion": "1.20.5"
+  }
 }

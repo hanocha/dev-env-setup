@@ -2,11 +2,9 @@
 
 Setting up development environment for Ubuntu, running on WSL2.
 
-
 ## targets
 
-- Ubuntu 22.04
-- ~~macOS~~
+- Ubuntu 24.04
 
 ## usage
 
@@ -20,8 +18,7 @@ $ sudo ./bin/setup
 
 See also: `main.rb`
 
+- brew
 - Powerline fonts
 - fish, fisherman, bobthefish theme
-- go, ghq, peco
-- rbenv
-- volta (nodejs version manager)
+- ghq

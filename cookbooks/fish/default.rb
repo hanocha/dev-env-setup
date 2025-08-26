@@ -1,8 +1,3 @@
-execute "Add fish shell repository" do
-  command "apt-add-repository ppa:fish-shell/release-3"
-  not_if "ls /etc/apt/sources.list.d/ | grep 'fish-shell-ubuntu-release-3'"
-end
-
 package "fish"
 
 config_file_path = "/home/#{node.user.name}/.config/fish/config.fish"
@@ -46,7 +41,8 @@ execute "Add aliases into config.fish" do
   cwd "/home/#{node.user.name}"
   command <<~EOC
     echo "alias gs='git switch'" >> #{config_file_path}
-    echo "alias be='bundle exec'" >> #{config_file_path}
+    echo "alias dce='docker compose exec'" >> #{config_file_path}
+    echo "alias dcu='docker compose up'" >> #{config_file_path}
   EOC
   not_if "grep 'alias gs' #{config_file_path}"
 end
