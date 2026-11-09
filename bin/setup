@@ -1,7 +1,144 @@
 #!/bin/sh
+set -e
 
-if [ ! -x ./mitamae ]; then
-  wget https://github.com/k0kubun/mitamae/releases/latest/download/mitamae-x86_64-linux; mv mitamae-x86_64-linux mitamae; chmod 700 mitamae
+cd "$(dirname "$0")/.."
+
+NODE_LOCAL=".node.local.json"
+NODE_EXAMPLE="node.json.example"
+NONINTERACTIVE=0
+
+for arg in "$@"; do
+  case "$arg" in
+    --non-interactive|-y)
+      NONINTERACTIVE=1
+      ;;
+    -h|--help)
+      cat <<'EOF'
+Usage: ./bin/setup [--non-interactive]
+
+  AlmaLinux 10 (el10) / WSL2 向けの開発環境をセットアップする。
+
+  (default)             ユーザー名と Git 用メールアドレスを対話入力する
+  --non-interactive, -y 既存の .node.local.json（なければ node.json.example）を使う
+EOF
+      exit 0
+      ;;
+    *)
+      echo "不明なオプション: $arg" >&2
+      echo "./bin/setup --help を参照してください。" >&2
+      exit 1
+      ;;
+  esac
+done
+
+if ! grep -qE 'PLATFORM_ID="platform:el10"|VERSION_ID="10(\.|")' /etc/os-release 2>/dev/null; then
+  echo "このリポジトリは AlmaLinux 10 (el10) 向けです。" >&2
+  if [ -f /etc/os-release ]; then
+    echo "現在の OS:" >&2
+    grep '^PRETTY_NAME=' /etc/os-release >&2 || cat /etc/os-release >&2
+  fi
+  exit 1
 fi
 
-sudo ./mitamae local -j node.json main.rb
+prompt() {
+  # usage: prompt VAR "label" "default"
+  _var="$1"
+  _label="$2"
+  _default="$3"
+  if [ -n "$_default" ]; then
+    printf "%s [%s]: " "$_label" "$_default"
+  else
+    printf "%s: " "$_label"
+  fi
+  read -r _input || true
+  if [ -z "$_input" ]; then
+    _input="$_default"
+  fi
+  eval "$_var=\$_input"
+}
+
+json_field() {
+  # usage: json_field FILE KEY
+  # 単純な "key": "value" 形式のみ対応
+  sed -n "s/.*\"$2\": \"\\([^\"]*\\)\".*/\\1/p" "$1" 2>/dev/null | head -1
+}
+
+if [ "$NONINTERACTIVE" -eq 1 ]; then
+  if [ -f "$NODE_LOCAL" ]; then
+    NODE_JSON="$NODE_LOCAL"
+  elif [ -f "$NODE_EXAMPLE" ]; then
+    NODE_JSON="$NODE_EXAMPLE"
+  else
+    echo "非対話モードでは $NODE_LOCAL または $NODE_EXAMPLE が必要です。" >&2
+    exit 1
+  fi
+  echo "非対話モード: $NODE_JSON を使用します。"
+else
+  default_user="${SUDO_USER:-${USER:-$(whoami)}}"
+  default_email=""
+
+  if [ -f "$NODE_LOCAL" ]; then
+    prev_user=$(json_field "$NODE_LOCAL" name)
+    prev_email=$(json_field "$NODE_LOCAL" email)
+    [ -n "$prev_user" ] && default_user="$prev_user"
+    [ -n "$prev_email" ] && default_email="$prev_email"
+  elif [ -f "$NODE_EXAMPLE" ]; then
+    prev_user=$(json_field "$NODE_EXAMPLE" name)
+    [ -n "$prev_user" ] && default_user="$prev_user"
+  fi
+
+  echo "開発環境セットアップの設定を入力してください。"
+  echo
+
+  while :; do
+    prompt user_name "Linux ユーザー名" "$default_user"
+    if [ -z "$user_name" ]; then
+      echo "ユーザー名は必須です。" >&2
+      continue
+    fi
+    if ! id "$user_name" >/dev/null 2>&1; then
+      echo "ユーザー '$user_name' が存在しません。" >&2
+      continue
+    fi
+    break
+  done
+
+  while :; do
+    prompt git_email "Git 用メールアドレス" "$default_email"
+    case "$git_email" in
+      *@*.*) break ;;
+      *)
+        echo "メールアドレスの形式が正しくありません。" >&2
+        ;;
+    esac
+  done
+
+  git_name="$user_name"
+
+  cat > "$NODE_LOCAL" <<EOF
+{
+  "user": {
+    "name": "${user_name}"
+  },
+  "git": {
+    "name": "${git_name}",
+    "email": "${git_email}"
+  }
+}
+EOF
+  NODE_JSON="$NODE_LOCAL"
+
+  echo
+  echo "設定を $NODE_LOCAL に保存しました。"
+  echo "  user.name = ${user_name}"
+  echo "  git.name  = ${git_name}"
+  echo "  git.email = ${git_email}"
+  echo
+fi
+
+if [ ! -x ./mitamae ]; then
+  curl -fsSL -o mitamae https://github.com/k0kubun/mitamae/releases/latest/download/mitamae-x86_64-linux
+  chmod 700 mitamae
+fi
+
+sudo ./mitamae local -j "$NODE_JSON" main.rb

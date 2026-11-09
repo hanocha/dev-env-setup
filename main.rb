@@ -1,3 +1,5 @@
+include_recipe './cookbooks/helpers/default.rb'
+include_recipe './cookbooks/base/default.rb'
 include_recipe './cookbooks/brew/default.rb'
 include_recipe './cookbooks/fish/default.rb'
 include_recipe './cookbooks/git/default.rb'
