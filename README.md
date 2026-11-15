@@ -57,6 +57,7 @@ AlmaLinux 10（RHEL 10 互換 / el10）向け開発環境を、[mitamae](https:/
 | `fish` | EPEL から fish 4.x を導入、デフォルトシェル化、fisher / bobthefish、alias |
 | `git` | `user.name` / `user.email` の global 設定 |
 | `ghq` | Homebrew 経由で ghq をインストール |
+| `awscli` | AWS CLI v2 を公式インストーラーで導入（`/usr/local/bin/aws`） |
 
 ### AlmaLinux 10 固有のポイント
 
@@ -83,6 +84,7 @@ AlmaLinux 10（RHEL 10 互換 / el10）向け開発環境を、[mitamae](https:/
 │   ├── brew/
 │   ├── fish/
 │   ├── git/
-│   └── ghq/
+│   ├── ghq/
+│   └── awscli/
 └── README.md
 ```
